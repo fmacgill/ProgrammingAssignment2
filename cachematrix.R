@@ -2,10 +2,10 @@
 ##      object variable, 
 ##          'inverse': stores inverse matrix  
 ##  usage:
-#       a <- makeVector(1:11)
+#       a <- makeCacheMatrix(matrix( c(2, 4, 3, 5), nrow=2,ncol=2))
 ##  alternate usage (this uses the object's set method):
-#       a <- makeVector()
-#       a$set(1:11)
+#       a <- makeCacheMatrix()
+#       a$set(matrix( c(2, 4, 3, 5), nrow=2,ncol=2))
 makeCacheMatrix <- function(x = matrix()) {
     inverse <- NULL     # instance variable for inverse matrix
     Set <- function(y) {  #
@@ -33,11 +33,11 @@ makeCacheMatrix <- function(x = matrix()) {
 ## usage
 #       cacheSolve(a)
 cacheSolve <- function(x, ...) {
-    m <- x$getInverse()
+    m <- x$getinverse()
     if(is.null(m)){       # no inverse cached
         data <- x$get()
-        m <- solve(x)     # calcuate  inverse
-        x$setInverse(m)   # cache inverse
+        m <- solve(data)     # calcuate  inverse
+        x$setinverse(m)   # cache inverse
     } else {
         message('using cache vakye')
     }
